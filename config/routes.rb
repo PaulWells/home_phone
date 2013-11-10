@@ -4,6 +4,8 @@ HomePhone::Application.routes.draw do
   resources :houses
 
   resources :users
+  
+  post 'houses/:id/add_users/' => 'houses#add_users'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

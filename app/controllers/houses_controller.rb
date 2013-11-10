@@ -60,11 +60,35 @@ class HousesController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def add_users
+    #json = JSON.parse(request.raw_post)
+    
+    usersHash = ActiveSupport::JSON.decode(request.raw_post)
+    usersArray = usersHash["users"]
+    justIDsArray = usersArray.map { |user| user["id"] }
+    
+    users = User.where("name = '#{justIDsArray}'")
+    
+    
+    users.each do |user|
+      add_user :user => user
+    end
+    
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_house
       @house = House.find(params[:id])
+    end
+    
+    def add_user(user)
+      
+      residency = Residency.new
+      residency.user = user
+      residency.house = @house
+      residency.save
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
