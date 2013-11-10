@@ -1,0 +1,29 @@
+<h1>Listing residencies</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>House</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @residencies.each do |residency| %>
+      <tr>
+        <td><%= residency.user_id %></td>
+        <td><%= residency.house_id %></td>
+        <td><%= link_to 'Show', residency %></td>
+        <td><%= link_to 'Edit', edit_residency_path(residency) %></td>
+        <td><%= link_to 'Destroy', residency, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Residency', new_residency_path %>
