@@ -62,17 +62,25 @@ class HousesController < ApplicationController
   end
   
   def add_users
-    #json = JSON.parse(request.raw_post)
-    
+		logger.debug "in add_users"
+    @house = House.find(params[:id])    
     usersHash = ActiveSupport::JSON.decode(request.raw_post)
     usersArray = usersHash["users"]
     justIDsArray = usersArray.map { |user| user["id"] }
-    
-    users = User.where("name = '#{justIDsArray}'")
-    
+		logger.debug "id array"
+		logger.debug justIDsArray.inspect
+    users = User.find(justIDsArray)
+    logger.debug users.inspect
     
     users.each do |user|
-      add_user :user => user
+      add_user user
+    end
+    
+    respond_to do |format|
+      
+        format.html { redirect_to @house, notice: 'House was successfully updated.' }
+        format.json { head :no_content }
+
     end
     
   end
@@ -88,8 +96,14 @@ class HousesController < ApplicationController
       residency = Residency.new
       residency.user = user
       residency.house = @house
-      residency.save
+      if residency.save
+				logger.debug "saved"
+			else
+				logger.debug "not saved"
+			end
     end
+      
+      
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def house_params
