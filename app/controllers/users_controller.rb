@@ -60,7 +60,19 @@
       format.json { head :no_content }
     end
   end
-  
+
+	def find_user
+		phone_number = params[:phone_number]
+		logger.debug phone_number
+		user = User.find_by phone_number: phone_number
+		logger.debug user.inspect
+		respond_to do |format|
+      format.html { redirect_to users_url }
+      format.json { render json: user } 
+    end
+	end
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
