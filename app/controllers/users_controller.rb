@@ -113,7 +113,7 @@ class UsersController < ApplicationController
 
 		house = House.find(params[:house_id].to_i)
 		residents = house.users
-		residents.delete(@user)
+		#:residents.delete(@user)
 		registration_ids = Array.new
 		house.users.each do |user|
 			registration_ids.push user.registration_ids
@@ -127,7 +127,7 @@ class UsersController < ApplicationController
 		body.data = data
 		body.registration_ids = registration_ids
 		body.time_to_live = 10
-		body.dry_run = true
+		body.dry_run = false
 		logger.debug body.inspect
 
 		request = Net::HTTP::Post.new(uri)
