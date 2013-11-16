@@ -1,4 +1,6 @@
 HomePhone::Application.routes.draw do
+  resources :registrations
+
   resources :residencies
 
   resources :houses
@@ -7,6 +9,8 @@ HomePhone::Application.routes.draw do
   
   post 'houses/:id/add_users/' => 'houses#add_users'
 	get 'users/find/:phone_number/' => 'users#find_user'
+	get 'users/:id/whos_home/:house_id' => 'users#whos_home'
+	post 'users/register' => 'users#register'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
