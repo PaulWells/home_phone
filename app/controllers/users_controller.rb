@@ -45,7 +45,7 @@ class UsersController < ApplicationController
 		@user.email = userHash["email"]
 		@user.name = userHash["name"]
 		@user.phone_number = userHash["phone_number"]
-		
+		saved = @user.save	
 		registration_id = userHash["registration_id"]
 		registration = Registration.new
 		registration.registration_id = registration_id
@@ -61,8 +61,8 @@ class UsersController < ApplicationController
 		
 
 		respond_to do |format|
-      if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+      if saved
+				format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render action: 'show', status: :created, location: @user }
       else
         format.html { render action: 'new' }
