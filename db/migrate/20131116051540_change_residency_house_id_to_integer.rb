@@ -1,10 +1,5 @@
 class ChangeResidencyHouseIdToInteger < ActiveRecord::Migration
-   def change
-    reversible do |dir|
-      change_table :residencies do |t|
-        dir.up   { t.change :house_id, :integer }
-        dir.down { t.change :house_id, :string }
-      end
-    end
-  end
+	def change
+		change_column :residencies, :house_id, 'integer USING CAST(house_id AS integer)'
+	end
 end
