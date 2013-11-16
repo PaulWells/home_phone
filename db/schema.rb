@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131114003437) do
+ActiveRecord::Schema.define(version: 20131116051540) do
 
   create_table "houses", force: true do |t|
     t.string   "house_name"
@@ -31,8 +31,8 @@ ActiveRecord::Schema.define(version: 20131114003437) do
   end
 
   create_table "residencies", force: true do |t|
-    t.string   "user_id"
-    t.string   "house_id"
+    t.integer  "user_id",    limit: 255
+    t.integer  "house_id",   limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
