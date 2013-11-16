@@ -48,12 +48,14 @@ class UsersController < ApplicationController
 		
 		registration_id = userHash["registration_id"]
 		registration = Registration.new
-		registration.registration_id = "registration_id"
+		registration.registration_id = registration_id
 		registration.user_id = @user.id
-		
+		puts registration.inspect
 		if registration.save
 			logger.debug "registered successfully"
+			puts "successful registration save"
 		else
+			puts "save failed"
 			logger.debug registration.errors
 		end
 		
@@ -116,7 +118,7 @@ class UsersController < ApplicationController
 		#:residents.delete(@user)
 		registration_ids = Array.new
 		house.users.each do |user|
-			registration_ids.push user.registration_ids
+			registration_ids.push user.registration_ids[0]
 		end
 
 		uri = URI.parse("https://android.googleapis.com/gcm/send")
