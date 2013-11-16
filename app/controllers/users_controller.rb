@@ -109,7 +109,7 @@ class UsersController < ApplicationController
 
 		require "net/http"
 		require "uri"
-
+		puts "in whos_home"
 
 		house = House.find(params[:house_id].to_i)
 		residents = house.users
@@ -129,6 +129,7 @@ class UsersController < ApplicationController
 		body.time_to_live = 10
 		body.dry_run = false
 		logger.debug body.inspect
+		puts body.inspect
 
 		request = Net::HTTP::Post.new(uri)
 		request.body = body.to_json
@@ -144,8 +145,13 @@ class UsersController < ApplicationController
 		when Net::HTTPSuccess, Net::HTTPRedirection
 			logger.debug "successful network call"
 			logger.debug response.body.inspect
+			puts "successful network call"
+			puts response.body.inspect
+
 		else
 			logger.debug response.value
+			puts response.value
+
 		end
 
 		respond_to do |format|
