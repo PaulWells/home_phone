@@ -118,7 +118,7 @@ class UsersController < ApplicationController
 		#:residents.delete(@user)
 		registration_ids = Array.new
 		house.users.each do |user|
-			registration_ids.push user.registration_ids[0]
+			registration_ids.push user.registrations[0]["registration_id"]
 		end
 
 		uri = URI.parse("https://android.googleapis.com/gcm/send")
