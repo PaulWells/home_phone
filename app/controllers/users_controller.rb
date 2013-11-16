@@ -128,7 +128,7 @@ class UsersController < ApplicationController
 		data.requestor_id = @user.id
 		data.house_id = house.id
 		data.longitude = house.longitude
-		data.latitude = latitude
+		data.latitude = house.latitude
 
 		body = GcmPollIsHome.new
 		body.data = data
