@@ -121,10 +121,13 @@ class UsersController < ApplicationController
 			registration_ids.push user.registrations[0]["registration_id"]
 		end
 
+		
+
 		uri = URI.parse("https://android.googleapis.com/gcm/send")
 		data = GcmData.new
 		data.requestor_id = @user.id
 		data.house_id = house.id
+
 		body = GcmPollIsHome.new
 		body.data = data
 		body.registration_ids = registration_ids

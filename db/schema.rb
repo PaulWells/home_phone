@@ -11,16 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131116051540) do
+ActiveRecord::Schema.define(version: 20131116182229) do
 
   create_table "houses", force: true do |t|
     t.string   "house_name"
-    t.string   "longitude"
-    t.string   "latitude"
     t.string   "address"
     t.string   "phone_number"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "latitude",     precision: 9, scale: 6
+    t.decimal  "longitude",    precision: 9, scale: 6
   end
 
   create_table "registrations", force: true do |t|
