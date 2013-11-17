@@ -114,7 +114,7 @@ class UsersController < ApplicationController
 		puts "in whos_home"
 
 		house = House.find(params[:house_id].to_i)
-		residents = house.users
+		residents = house.users.to_a
 		residents.delete(@user)
 		registration_ids = Array.new
 		house.users.each do |user|
