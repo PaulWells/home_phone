@@ -120,7 +120,9 @@ class UsersController < ApplicationController
 		puts residents.inspect
 		registration_ids = Array.new
 		residents.each do |user|
-			registration_ids.push user.registrations[0]["registration_id"]
+			user.registrations.each do |registration|
+				registration_ids.push registration["registration_id"]
+			end
 		end
 
 		
