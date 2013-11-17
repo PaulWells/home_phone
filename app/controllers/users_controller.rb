@@ -115,7 +115,9 @@ class UsersController < ApplicationController
 
 		house = House.find(params[:house_id].to_i)
 		residents = house.users.to_a
+		puts residents.inspect
 		residents.delete(@user)
+		puts residents.inspect
 		registration_ids = Array.new
 		house.users.each do |user|
 			registration_ids.push user.registrations[0]["registration_id"]
