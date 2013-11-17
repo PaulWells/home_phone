@@ -119,7 +119,7 @@ class UsersController < ApplicationController
 		residents.delete(@user)
 		puts residents.inspect
 		registration_ids = Array.new
-		house.users.each do |user|
+		residents.each do |user|
 			registration_ids.push user.registrations[0]["registration_id"]
 		end
 
