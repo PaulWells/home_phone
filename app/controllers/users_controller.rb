@@ -141,6 +141,7 @@ class UsersController < ApplicationController
 		body.dry_run = false
 		logger.debug body.inspect
 		puts body.inspect
+		puts body.to_json
 
 		request = Net::HTTP::Post.new(uri)
 		request.body = body.to_json
