@@ -193,7 +193,7 @@ class UsersController < ApplicationController
 			
 		respond_to do |format|
       format.html { redirect_to users_url }
-      format.json { render json: response.body} 
+      format.json { render json: user_at_home} 
     end
 
 
