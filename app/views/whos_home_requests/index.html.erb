@@ -1,0 +1,29 @@
+<h1>Listing whos_home_requests</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Num recipients</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @whos_home_requests.each do |whos_home_request| %>
+      <tr>
+        <td><%= whos_home_request.user_id %></td>
+        <td><%= whos_home_request.num_recipients %></td>
+        <td><%= link_to 'Show', whos_home_request %></td>
+        <td><%= link_to 'Edit', edit_whos_home_request_path(whos_home_request) %></td>
+        <td><%= link_to 'Destroy', whos_home_request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Whos home request', new_whos_home_request_path %>

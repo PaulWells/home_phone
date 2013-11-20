@@ -1,0 +1,29 @@
+<%= form_for(@whos_home_response) do |f| %>
+  <% if @whos_home_response.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@whos_home_response.errors.count, "error") %> prohibited this whos_home_response from being saved:</h2>
+
+      <ul>
+      <% @whos_home_response.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :whos_home_request_id %><br>
+    <%= f.number_field :whos_home_request_id %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br>
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :is_home %><br>
+    <%= f.check_box :is_home %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

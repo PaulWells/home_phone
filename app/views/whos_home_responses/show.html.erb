@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Whos home request:</strong>
+  <%= @whos_home_response.whos_home_request_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @whos_home_response.user_id %>
+</p>
+
+<p>
+  <strong>Is home:</strong>
+  <%= @whos_home_response.is_home %>
+</p>
+
+<%= link_to 'Edit', edit_whos_home_response_path(@whos_home_response) %> |
+<%= link_to 'Back', whos_home_responses_path %>

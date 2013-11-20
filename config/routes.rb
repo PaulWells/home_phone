@@ -1,4 +1,8 @@
 HomePhone::Application.routes.draw do
+  resources :whos_home_responses
+
+  resources :whos_home_requests
+
   resources :registrations
 
   resources :residencies

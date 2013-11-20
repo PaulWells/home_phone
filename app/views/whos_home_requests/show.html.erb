@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @whos_home_request.user_id %>
+</p>
+
+<p>
+  <strong>Num recipients:</strong>
+  <%= @whos_home_request.num_recipients %>
+</p>
+
+<%= link_to 'Edit', edit_whos_home_request_path(@whos_home_request) %> |
+<%= link_to 'Back', whos_home_requests_path %>

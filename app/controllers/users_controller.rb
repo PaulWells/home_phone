@@ -125,6 +125,11 @@ class UsersController < ApplicationController
 			end
 		end
 
+		requestRecord = WhosHomeRequest.new
+		requestRecord.user_id = @user.id
+		requestRecord.num_recipients = registration_ids.count
+		requestRecord.save
+
 		
 
 		uri = URI.parse("https://android.googleapis.com/gcm/send")
@@ -133,6 +138,7 @@ class UsersController < ApplicationController
 		data.house_id = house.id
 		data.longitude = house.longitude
 		data.latitude = house.latitude
+		data.whos_home_request_id = requestRecord.id
 
 		body = GcmPollIsHome.new
 		body.data = data
@@ -166,10 +172,27 @@ class UsersController < ApplicationController
 
 		end
 
+		sleep(10.seconds)
+		
+		oustanding_request = @user.whos_home_request
+		user_responses = outstanding_request.whos_home_responses
+		users_at_home = Array.new
+		user_responses.each do |response|
+			if response.is_home
+				users_at_home.add response.user_id
+			end
+		end
+
+			
 		respond_to do |format|
       format.html { redirect_to users_url }
       format.json { render json: response.body} 
     end
+
+
+		user_responses.delete
+		outstanding_request.delete
+
 	end
 
   private

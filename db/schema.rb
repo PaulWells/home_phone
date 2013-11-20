@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131116182229) do
+ActiveRecord::Schema.define(version: 20131120023722) do
 
   create_table "houses", force: true do |t|
     t.string   "house_name"
@@ -41,6 +41,22 @@ ActiveRecord::Schema.define(version: 20131116182229) do
     t.string   "phone_number"
     t.string   "name"
     t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "outstanding_request_id"
+  end
+
+  create_table "whos_home_requests", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "num_recipients"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "whos_home_responses", force: true do |t|
+    t.integer  "whos_home_request_id"
+    t.integer  "user_id"
+    t.boolean  "is_home"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

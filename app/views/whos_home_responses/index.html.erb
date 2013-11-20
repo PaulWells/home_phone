@@ -1,0 +1,31 @@
+<h1>Listing whos_home_responses</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Whos home request</th>
+      <th>User</th>
+      <th>Is home</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @whos_home_responses.each do |whos_home_response| %>
+      <tr>
+        <td><%= whos_home_response.whos_home_request_id %></td>
+        <td><%= whos_home_response.user_id %></td>
+        <td><%= whos_home_response.is_home %></td>
+        <td><%= link_to 'Show', whos_home_response %></td>
+        <td><%= link_to 'Edit', edit_whos_home_response_path(whos_home_response) %></td>
+        <td><%= link_to 'Destroy', whos_home_response, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Whos home response', new_whos_home_response_path %>
