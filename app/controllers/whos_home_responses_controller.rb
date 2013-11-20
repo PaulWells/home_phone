@@ -24,7 +24,16 @@ class WhosHomeResponsesController < ApplicationController
   # POST /whos_home_responses
   # POST /whos_home_responses.json
   def create
-    @whos_home_response = WhosHomeResponse.new(whos_home_response_params)
+		case request.format
+		when 'html'
+			@whos_home_response = WhosHomeResponse.new(whos_home_response_params)
+		when 'json'
+			responseHash = ActiveSupport::JSON.decode(request.raw_post)["whos_home_response"]
+			@whos_home_response = WhosHomeResponse.new
+			@whos_home_response.whos_home_request_id = responseHash["whos_home_request_id"]
+			@whos_home_response.user_id = responseHash["user_id"]
+			@whos_home_response.is_home = responseHash["is_home"]
+		end
 
     respond_to do |format|
       if @whos_home_response.save
