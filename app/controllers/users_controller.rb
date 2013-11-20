@@ -174,7 +174,7 @@ class UsersController < ApplicationController
 
 		sleep(10.seconds)
 		
-		oustanding_request = @user.whos_home_request
+		outstanding_request = @user.whos_home_request
 		user_responses = outstanding_request.whos_home_responses
 		users_at_home = Array.new
 		user_responses.each do |response|
