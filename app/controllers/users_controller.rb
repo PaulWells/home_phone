@@ -128,7 +128,14 @@ class UsersController < ApplicationController
 		requestRecord = WhosHomeRequest.new
 		requestRecord.user_id = @user.id
 		requestRecord.num_recipients = registration_ids.count
-		requestRecord.save
+
+		puts requestRecord.inspect
+
+		if requestRecord.save
+			puts "request saved"
+		else
+			puts "request not saved"
+		end
 
 		
 
