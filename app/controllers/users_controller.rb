@@ -178,28 +178,15 @@ class UsersController < ApplicationController
 			puts response.value
 
 		end
-
-		sleep(10.seconds)
+	
+		WhosHomeJob.delay(run_at: 10.seconds.from_now).respond_to_whos_home(@user)
 		
-		outstanding_request = @user.whos_home_request
-		user_responses = outstanding_request.whos_home_responses
-		users_at_home = Array.new
-		user_responses.each do |response|
-			if response.is_home
-				users_at_home.add response.user_id
-			end
-		end
-
 			
 		respond_to do |format|
       format.html { redirect_to users_url }
       format.json { render json: users_at_home} 
     end
-
-
-		user_responses.delete
-		outstanding_request.delete
-
+	
 	end
 
   private

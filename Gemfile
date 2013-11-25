@@ -4,6 +4,8 @@ ruby '2.0.0'
 
 gem 'rails', '4.0.1'
 gem 'unicorn'
+gem 'delayed_job_active_record'
+gem 'delayed_job'
 
 group :development do
   gem 'sqlite3', '1.3.8'
