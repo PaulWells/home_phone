@@ -184,7 +184,7 @@ class UsersController < ApplicationController
 			
 		respond_to do |format|
       format.html { redirect_to users_url }
-      format.json { render json: users_at_home} 
+      format.json { render json: true} 
     end
 	
 	end
