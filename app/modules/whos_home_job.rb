@@ -1,6 +1,6 @@
 class WhosHomeJob
 
-	def respond_to_whos_home(user)
+	def self.respond_to_whos_home(user)
 
 
 		outstanding_request = user.whos_home_request
